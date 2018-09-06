@@ -294,7 +294,7 @@ jQuery(function () {
 
   // Update Submissions
   jQuery('.view_mess').click(function(){
-
+      console.dir($('#upd_text_'+id[1]).html());
     var id = jQuery(this).attr('id').split('_');
     var id2 = jQuery(this).attr('id');
 
