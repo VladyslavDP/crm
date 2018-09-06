@@ -405,15 +405,6 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
             <table style='table-layout: fixed' class='table-sub table table-hover' id='subs1'>
                 <thead>
                 <tr>
-<!--                    <th width="5%" title='Click to sort'>ID</th>-->
-<!--                    <th width="10%" title='Click to sort'>Read</th>-->
-<!--                    <th width="20%" title='Click to sort'>Date</th>-->
-<!--                    <th width="30%" title='Click to sort'>Form Name</th>-->
-<!--                    <th width="25%" title='Click to sort'>Message</th>-->
-<!--                    <th width="10%" title='Click to sort'>Options</th>-->
-
-<!--                    																-->
-
                     <th title='Click to sort'>Телефон</th>
                     <th title='Click to sort'>Дата</th>
                     <th title='Click to sort'>Адрес</th>
@@ -423,7 +414,6 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
                     <th title='Click to sort'>Тип оплаты</th>
                     <th title='Click to sort'>Сумма</th>
                     <th title='Click to sort'>Прибыль</th>
-
                 </tr>
                 </thead>
                 <tbody>
