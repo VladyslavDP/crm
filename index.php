@@ -402,7 +402,66 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
 
         <div class="tab-pane" id="customers">
 
-            1
+            <table style='table-layout: fixed' class='table-sub table table-hover' id='subs1'>
+                <thead>
+                <tr>
+                    <th width="5%" title='Click to sort'>ID</th>
+                    <th width="10%" title='Click to sort'>Read</th>
+                    <th width="20%" title='Click to sort'>Date</th>
+                    <th width="30%" title='Click to sort'>Form Name</th>
+                    <th width="25%" title='Click to sort'>Message</th>
+                    <th width="10%" title='Click to sort'>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($mysub as $key => $row) {
+                    $std = "style='padding: 4px 8px; margin: 0; vertical-align: top'";
+
+                    $new = json_decode($row['content'], 1);
+
+                    $row_id = $row['form_id'];
+
+                    $query = ORM::for_table('builder')->find_one($row_id);
+
+                    $name = $query->name;
+
+
+                    ?>
+
+                    <tr id='sub_<?php echo $row['id']; ?>' class='<?php if ($row['seen'] == '1') {
+                        echo 'row_shade';
+                    } ?>'>
+                        <td style='text-align: center'><?php echo $row['id']; ?></td>
+                        <td style='text-align: center'
+                            id='rd_<?php echo $row['id']; ?>'><?php if ($row['seen']) {
+                                echo 'Read';
+                            } else {
+                                echo 'Unread';
+                            } ?></td>
+                        <td style='text-align: center'><?php echo $row['added']; ?></td>
+                        <td><?php if (!(empty($name))) {
+                                echo $name;
+                            } else {
+                                echo '(form deleted)';
+                            } ?></td>
+                        <td style='text-align: center'>
+                            <button class='btn view_mess' id='upd_<?php echo $row['id']; ?>' data-toggle='modal'
+                                    data-target='#view_modal'>View
+                            </button>
+
+                        </td>
+                        <td style='text-align: center'>
+                            <i class='icon-trash icon-2x view_mess' id='del_<?php echo $row['id']; ?>'
+                               title='Delete message'></i>&nbsp;
+                            <i class='icon-bookmark-empty icon-2x view_mess' id='read_<?php echo $row['id']; ?>'
+                               title='Mark as unread'></i>
+                        </td>
+                    </tr>
+                <?php } ?>
+
+                </tbody>
+            </table>
 
         </div>
 
