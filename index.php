@@ -460,6 +460,38 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
                             <i class='icon-bookmark-empty icon-2x view_mess' id='read_<?php echo $row['id']; ?>'
                                title='Mark as unread'></i>
                         </td>
+                        <td style="text-align: center">
+
+                            <?php
+//                            echo $mysub;
+//                            print_r ($mysub);
+//
+                            foreach ($mysub as $key => $row){
+//                                print_r ($row);
+                                $new = json_decode($row['content'], 1);
+//                                print_r($new);
+
+                                foreach ($new as $value){
+//                                    print_r($value);
+
+                                    if (!(empty($value['type'])) && !($value['type'] == 'captcha') && !($value['label'] == 'files') && !($value['type'] == 'hidden') && !($value['label'] == 'divider')) {
+                                        if (($value['type'] == 'radio' || $value['type'] == 'check' || $value['type'] == 'matrix' || $value['type'] == 'stars' || $value['type'] == 'smiley') && (empty($value['value']))) {
+                                            $mess[$key] .= "";
+                                        } else {
+                                            // gen val
+                                            $mess[$key] .= "<li><span $std><strong>$value[label] </strong></span><input value=\"$value[value]\" > </li>";
+
+                                            print_r($mess[$key][2]);
+                                        }
+                                    }
+//
+                                }
+                            }
+                            ?>
+
+
+
+                        </td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -501,6 +533,7 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
 </div><!-- End of Cover -->
 <?php
 
+// генерация сообщений
 
 foreach ($mysub as $key => $row) {
     $mess[$key] = '';
@@ -508,6 +541,7 @@ foreach ($mysub as $key => $row) {
     $std2 = "style='padding: 4px 8px; margin: 0; vertical-align: top; width: 60%; display: inline-block'";
 
     $new = json_decode($row['content'], 1);
+//    echo $new;
     $att = 1;
 
     foreach ($new as $value) {
@@ -515,7 +549,8 @@ foreach ($mysub as $key => $row) {
             if (($value['type'] == 'radio' || $value['type'] == 'check' || $value['type'] == 'matrix' || $value['type'] == 'stars' || $value['type'] == 'smiley') && (empty($value['value']))) {
                 $mess[$key] .= "";
             } else {
-                $mess[$key] .= "<li><span $std><strong>$value[label] </strong></span><span $std2>$value[value]</span></li>";
+                // gen val
+                $mess[$key] .= "<li><span $std><strong>$value[label] </strong></span><input value=\"$value[value]\" > </li>";
             }
         } else if ($value['label'] == 'files') {
             $mess[$key] .= "<li><span $std><strong>Attachment($att) </strong></span><a href='$value[value]' target='_blank' $std2>$value[value]</a></li>";
