@@ -6,7 +6,7 @@ require_once('function.php');
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ADD CUSTOMER</title>
+    <title>Добавить клиента</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 </head>
