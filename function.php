@@ -1201,7 +1201,9 @@
       function formcrafts_register_scripts () 
       {
 
-        global $path;
+//        global $path;
+
+          $path = '/crm/'
 
         ?>
 

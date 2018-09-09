@@ -60,10 +60,11 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
 
 
     <div id="title_div">
-        <h1>FormCraft</h1>
+        <h1>CRM</h1>
         <a class='docs_title' href='http://ncrafts.net/formcraft/docs/table-of-contents/' target='_blank'
            style='right: 16.5%'>Complete Online Guide</a>
-        <a class='docs_title' href='documentation.html' target='_blank' style='right: 6.5%'>Documentation</a>
+        <a class='docs_title' href='add_customer.php' style='right: 6.5%'>Добавить клиента</a>
+<!--        <a class='docs_title' href='documentation.html' target='_blank' style='right: 6.5%'>Documentation</a>-->
         <a class='docs_title' href='http://ncrafts.net' target='_blank' style='right: 1.5%'>nCrafts</a>
     </div>
 
@@ -157,17 +158,17 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
 
 
     <ul class="nav nav-pills" style='margin-top: 60px'>
-        <li class='active'><a href="#home" data-toggle="tab">Home</a></li>
+        <li><a href="#home" data-toggle="tab">Home</a></li>
         <li><a href="#forms" data-toggle="tab">Forms</a></li>
         <li><a href="#submissions" data-toggle="tab">Submissions <span
                         style='color: green'>(<?php echo sizeof($mysub) - sizeof($mysubr); ?>)</span></a></li>
         <li><a href="#files" data-toggle="tab">File Manager</a></li>
         <li><a href="#add" data-toggle="tab">Add-Ons</a></li>
-        <li><a href="#customers" data-toggle="tab">customers</a></li>
+        <li class='active'><a href="#customers" data-toggle="tab">Клиенты</a></li>
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane active" id="home">
+        <div class="tab-pane active" id="home" style="display: none;">
 
             <div class='charts'>
 
@@ -378,7 +379,6 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
                             <?php
                             foreach ($read['files'] as $key => $value) {
                                 ?>
-
                                 <tr>
                                     <td><?php echo $key + 1 ?></td>
                                     <td><?php echo $value['name']; ?></td>
@@ -400,21 +400,11 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
             </div>
         </div>
 
-        <div class="tab-pane" id="customers">
+        <div class="tab-pane active" id="customers">
+                <table style='table-layout: fixed' class='table-sub table table-hover' id='subs1'>
+                    <caption id="customers_capt"></caption>
+                <thead id="customers_head">
 
-            <table style='table-layout: fixed' class='table-sub table table-hover' id='subs1'>
-                <thead>
-                <tr>
-                    <th title='Click to sort'>Телефон</th>
-                    <th title='Click to sort'>Дата</th>
-                    <th title='Click to sort'>Адрес</th>
-                    <th title='Click to sort'>Количество</th>
-                    <th title='Click to sort'>Марка</th>
-                    <th title='Click to sort'>Заказ</th>
-                    <th title='Click to sort'>Тип оплаты</th>
-                    <th title='Click to sort'>Сумма</th>
-                    <th title='Click to sort'>Прибыль</th>
-                </tr>
                 </thead>
                 <tbody>
                 <?php
@@ -434,62 +424,19 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
                     <tr id='sub_<?php echo $row['id']; ?>' class='<?php if ($row['seen'] == '1') {
                         echo 'row_shade';
                     } ?>'>
-                        <td style='text-align: center'><?php echo $row['id']; ?></td>
-                        <td style='text-align: center'><?php echo $row['added']; ?></td>
-                        <td style='text-align: center'
-                            id='rd_<?php echo $row['id']; ?>'><?php if ($row['seen']) {
-                                echo 'Read';
-                            } else {
-                                echo 'Unread';
-                            } ?></td>
-
-                        <td><?php if (!(empty($name))) {
-                                echo $name;
-                            } else {
-                                echo '(form deleted)';
-                            } ?></td>
+                        <?php
+                            for ($i = 3; $i <= 12; $i++) {
+                                echo ('<td style="text-align: center">'.$new[$i][value].'</td>');
+                            }
+                        ?>
                         <td style='text-align: center'>
                             <button class='btn view_mess' id='upd_<?php echo $row['id']; ?>' data-toggle='modal'
                                     data-target='#view_modal'>View
                             </button>
-
-                        </td>
-                        <td style='text-align: center'>
                             <i class='icon-trash icon-2x view_mess' id='del_<?php echo $row['id']; ?>'
                                title='Delete message'></i>&nbsp;
                             <i class='icon-bookmark-empty icon-2x view_mess' id='read_<?php echo $row['id']; ?>'
                                title='Mark as unread'></i>
-                        </td>
-                        <td style="text-align: center">
-
-                            <?php
-//                            echo $mysub;
-//                            print_r ($mysub);
-//
-                            foreach ($mysub as $key => $row){
-//                                print_r ($row);
-                                $new = json_decode($row['content'], 1);
-//                                print_r($new);
-
-                                foreach ($new as $value){
-//                                    print_r($value);
-
-                                    if (!(empty($value['type'])) && !($value['type'] == 'captcha') && !($value['label'] == 'files') && !($value['type'] == 'hidden') && !($value['label'] == 'divider')) {
-                                        if (($value['type'] == 'radio' || $value['type'] == 'check' || $value['type'] == 'matrix' || $value['type'] == 'stars' || $value['type'] == 'smiley') && (empty($value['value']))) {
-                                            $mess[$key] .= "";
-                                        } else {
-                                            // gen val
-                                            $mess[$key] .= "<li><span $std><strong>$value[label] </strong></span><input value=\"$value[value]\" > </li>";
-
-                                            print_r($mess[$key][2]);
-                                        }
-                                    }
-//
-                                }
-                            }
-                            ?>
-
-
 
                         </td>
                     </tr>
@@ -541,16 +488,21 @@ foreach ($mysub as $key => $row) {
     $std2 = "style='padding: 4px 8px; margin: 0; vertical-align: top; width: 60%; display: inline-block'";
 
     $new = json_decode($row['content'], 1);
+
 //    echo $new;
     $att = 1;
 
     foreach ($new as $value) {
+//        print_r($value[value]);
         if (!(empty($value['type'])) && !($value['type'] == 'captcha') && !($value['label'] == 'files') && !($value['type'] == 'hidden') && !($value['label'] == 'divider')) {
             if (($value['type'] == 'radio' || $value['type'] == 'check' || $value['type'] == 'matrix' || $value['type'] == 'stars' || $value['type'] == 'smiley') && (empty($value['value']))) {
                 $mess[$key] .= "";
             } else {
                 // gen val
                 $mess[$key] .= "<li><span $std><strong>$value[label] </strong></span><input value=\"$value[value]\" > </li>";
+                $tableThRow[$key] .= "<th>$value[label]</th>";
+
+                $tableTrRow{$key} .= "<td>$value[value]</td>";
             }
         } else if ($value['label'] == 'files') {
             $mess[$key] .= "<li><span $std><strong>Attachment($att) </strong></span><a href='$value[value]' target='_blank' $std2>$value[value]</a></li>";
@@ -565,11 +517,16 @@ foreach ($mysub as $key => $row) {
 
     }
 
+    $tableThRow[$key] .= "<th>Действия</th>";
 
     $message[$key] =
         '<ul>
 									' . $mess[$key] . '
 								</ul>';
+
+    $theadRow[$key] = '<thead class="row_thead">' . $tableThRow[$key] . '</thead>';
+    $trRow[$key] = '<tbody class="row_tbody">' . $tableTrRow{$key} .  '</tbody>';
+
     $row_id = $row['form_id'];
 
 
@@ -585,6 +542,12 @@ foreach ($mysub as $key => $row) {
         } ?></span>
     <span style='display: none' id='upd_text_<?php echo $row['id']; ?>'><p><?php echo $location . $message[$key]; ?></p></span>
 
+
+
+    <table style="display: none">
+        <?php echo $theadRow[$key] ?>
+<!--        --><?php //echo $trRow[$key] ?>
+    </table>
 
     <?php
 }

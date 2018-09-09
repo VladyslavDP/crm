@@ -297,7 +297,7 @@ jQuery(function () {
     var id = jQuery(this).attr('id').split('_');
     var id2 = jQuery(this).attr('id');
 
-      console.dir($('#upd_text_'+id[1]).html());
+      console.dir(id[0]);
 
     if (id[0]=='upd')
     {
@@ -353,6 +353,16 @@ jQuery(function () {
   });
 
 
+
+  // add customers to table
+  var id = jQuery('.view_mess').attr('id').split('_');
+    jQuery('#customers_capt').html(jQuery('#upd_name_'+id[1]).html());
+    jQuery('#customers_head').html(jQuery('.row_thead').html());
+    // jQuery('#customers_body').html(jQuery('.row_tbody').html());
+    // console.log($('.row_tbody'));
+    //     jQuery('#customers_body').html(jQuery('.row_thead').html());
+        //
+        //
 
   // Delete File From File Manager
 
