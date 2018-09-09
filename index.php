@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
     header('Location: login.php');
 }
 
-//TODO sessiom timer 
+//TODO sessiom timer
 //session_start();
 //session_unset();
 //session_destroy();
@@ -55,6 +55,7 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
     <link href='css/style.css' rel='stylesheet' type='text/css'>
     <link href='css/boxes.css' rel='stylesheet' type='text/css'>
     <link href='datepicker/css/datepicker.css' rel='stylesheet' type='text/css'>
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -406,8 +407,12 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
         </div>
 
         <div class="tab-pane active" id="customers">
-                <table style='table-layout: fixed' class='table-sub table table-hover' id='subs1'>
-                    <caption id="customers_capt"></caption>
+<!--                <table style='table-layout: fixed' class='table-sub table table-hover' id='subs1'>-->
+<!--                </table>-->
+
+
+            <table id="subs1" style='table-layout: fixed' class='table-sub table table-hover'>
+                <caption id="customers_capt"></caption>
                 <thead id="customers_head">
 
                 </thead>
@@ -430,9 +435,9 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
                         echo 'row_shade';
                     } ?>'>
                         <?php
-                            for ($i = 3; $i <= 12; $i++) {
-                                echo ('<td style="text-align: center">'.$new[$i][value].'</td>');
-                            }
+                        for ($i = 3; $i <= 12; $i++) {
+                            echo ('<td style="text-align: center">'.$new[$i][value].'</td>');
+                        }
                         ?>
                         <td style='text-align: center'>
                             <button class='btn view_mess' id='upd_<?php echo $row['id']; ?>' data-toggle='modal'
@@ -448,6 +453,44 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
                 <?php } ?>
                 </tbody>
             </table>
+
+
+            <script src='https://code.jquery.com/jquery-3.3.1.js'></script>
+            <script src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
+            <script>
+                $(document).ready(function() {
+                    var russian = {
+                        "sProcessing":     "Подождите...",
+                        "sLengthMenu":     "Показать _MENU_ записей",
+                        "sZeroRecords":    "Записи отсутствуют.",
+                        "sEmptyTable":     "В таблице отсутствуют данные",
+                        "sInfo":           "Записи с _START_ до _END_ из _TOTAL_ записей",
+                        "sInfoEmpty":      "Записи с 0 до 0 из 0 записей",
+                        "sInfoFiltered":   "(отфильтровано из _MAX_ записей)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Поиск:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Загрузка записей...",
+                        "oPaginate": {
+                            "sFirst":    "Первая",
+                            "sLast":     "Предыдущая",
+                            "sNext":     "Следующая",
+                            "sPrevious": "Последняя"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": активировать для сортировки столбца по возрастанию",
+                            "sSortDescending": ": активировать для сортировки столбца по убыванию"
+                        }
+                    };
+
+                    $('#subs1').DataTable({
+                        // responsive: true,
+                            oLanguage: russian
+                    });
+                    console.log($('#subs1').DataTable);
+                } );
+            </script>
 
         </div>
 
