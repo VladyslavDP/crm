@@ -343,6 +343,7 @@ jQuery(function () {
           {
             jQuery('#rd_'+id[1]).html('Unread');
             jQuery('#'+id2).parent().parent().removeClass('row_shade');
+            // alert('upd');
           }
         },
         error: function (response) {

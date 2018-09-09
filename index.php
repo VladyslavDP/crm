@@ -434,7 +434,7 @@ if ($_SERVER['SERVER_NAME'] == 'ncrafts.net') {
                                     data-target='#view_modal'>View
                             </button>
                             <i class='icon-trash icon-2x view_mess' id='del_<?php echo $row['id']; ?>'
-                               title='Delete message'></i>&nbsp;
+                               title='Удалить'></i>&nbsp;
                             <i class='icon-bookmark-empty icon-2x view_mess' id='read_<?php echo $row['id']; ?>'
                                title='Mark as unread'></i>
 

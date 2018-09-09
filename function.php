@@ -332,8 +332,8 @@
           $result = ORM::for_table('submissions')->find_one($id);
           $result->seen = '0'; $result->save();
           if ($result)
-          {    
-            echo 'D';
+          {
+            echo 'D3';
           }
         }
         die();
