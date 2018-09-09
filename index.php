@@ -8,6 +8,11 @@ if (!isset($_SESSION['username'])) {
     header('Location: login.php');
 }
 
+//TODO sessiom timer 
+//session_start();
+//session_unset();
+//session_destroy();
+//session_write_close();
 
 require_once('config.fc.php');
 
