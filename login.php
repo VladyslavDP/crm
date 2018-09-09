@@ -28,7 +28,7 @@ if (!isset($_SESSION)) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>FormCraft - Log In</title>
+	<title>BDK CRM - Авторизация</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link href='css/style.css' rel='stylesheet' type='text/css'>
 	<link href='css/boxes.css' rel='stylesheet' type='text/css'>
@@ -245,11 +245,11 @@ if (!isset($_SESSION)) {
 <body>
 
 	<div class='login'>
-		<h1>FormCraft</h1>
+		<h1>CRM</h1>
 		<form action='javascript:submit_formcraft_login();' id='login_form'>
-			<input type='user' name='user' onblur="if(this.value=='')this.value='username';" onfocus="if(this.value=='username')this.value='';" value='<?php if (isset($_GET['user'])) {echo $_GET['user'];} else {echo 'username';} ?>'>
-			<input type='password' name='password' onblur="if(this.value=='')this.value='password';" onfocus="if(this.value=='password')this.value='';" value='<?php if (isset($_GET['pass'])) {echo $_GET['pass'];} else {echo 'password';} ?>'>
-			<button type='submit' class='submit'>Log In</button>
+            <input type='user' name='user' onblur="if(this.value=='')this.value='username';" onfocus="if(this.value=='username')this.value='';" value='<?php if (isset($_GET['user'])) {echo $_GET['user'];} else {echo 'Логин';} ?>'>
+            <input type='password' name='password' onblur="if(this.value=='')this.value='password';" onfocus="if(this.value=='password')this.value='';" value='<?php if (isset($_GET['pass'])) {echo $_GET['pass'];} else {echo 'password';} ?>'>
+			<button type='submit' class='submit'>Войти</button>
 			<div id='response'></div>
 		</form>
 	</div>

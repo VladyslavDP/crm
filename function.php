@@ -54,14 +54,14 @@
     if (empty($_POST['user']) || empty($_POST['password']))
     {
       $result['done'] = 'error';
-      $result['message'] = 'Incorrect user / password';
+      $result['message'] = 'Неправильный логин/пароль.';
       echo json_encode($result);
       die();
     }
     if ( $_POST['user']!=$user || $_POST['password']!=$password )
     {
       $result['done'] = 'error';
-      $result['message'] = 'Incorrect user / password.';
+      $result['message'] = 'Неправильный логин/пароль.';
       echo json_encode($result);
       die();
     }
